@@ -63,14 +63,15 @@
     }
 
     .backbutton {
-        grid-column: 1 / 3;
-        grid-row: 1/2;
-        background-color: gray;
+        grid-column: 1 / 2;
+        grid-row: 2/3;
+        height: 100%;
+        width: 100%;
+        /*  background-color: gray; */
         border-radius: 4px;
         box-shadow: 3;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-        text-align: center;
     }
 
     .backbutton:hover {
@@ -144,6 +145,12 @@
         <template v-else>
             <div class="playingBar">
                 <!--<div class="playbutton" v-on:click="stopSong">Stop music</div> -->
+                <div class="backbutton" v-on:click="backToSearch">
+                    <svg width="40" height="40">
+                        <rect x="0" y="0" rx="0" ry="00" width="40" height="40" style="fill:red;stroke:black;stroke-width:0;" />
+                        <polygon points=" 32 25,  32 15 , 18 15 , 18 8, 10 20 , 18 32 , 18 25" style="fill:black;" />
+                    </svg>
+                </div>
                 <div class="playbutton" v-on:click="stopSong">
                     <svg width="40" height="40">
                         <rect x="0" y="0" rx="7" ry="7" width="40" height="40" style="fill:red;" />
@@ -155,7 +162,7 @@
         width: 180px;" v-bind:src="currentVideoImg" /></div>
                 <div class="titleBar">{{currentVideoTitle}}</div>
                 <div class="timelength">{{currentVideoTime}}</div>
-                <div class="backbutton" v-on:click="backToSearch">Back</div>
+
                 <div class="nextsong" v-on:click="nextSong"> Wrong song? try another one
                 </div>
             </div>
