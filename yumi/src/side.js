@@ -13,7 +13,7 @@ var app = new Vue({
     currentVideo: 0,
     currentVideoImg: "",
     currentVideoTitle: "",
-    currentVideoTime: "",
+    currentVideoTime: "", 
     isPlaying: false,
     loading: false
   },
