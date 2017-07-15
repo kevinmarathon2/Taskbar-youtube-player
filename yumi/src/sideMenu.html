@@ -1,0 +1,147 @@
+<html>
+
+<head>
+    <script src="./vue.js"></script>
+</head>
+<style>
+    @font-face {
+        font-family: "Open Sans";
+        src: url("opensans.ttf");
+    }
+
+    #app {
+        height: 150px;
+        width: 300px;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .searchBarpage {
+
+        height: 150px;
+        width: 300px;
+        border-radius: 10px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    .playingBar {
+        height: 150px;
+        width: 300px;
+        border-radius: 10px;
+        display: grid;
+        grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+        grid-template-rows: 20% 20% 20% 20% 20%;
+        grid-gap: 0px;
+        border-radius: 10px;
+        /*display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start; */
+        background: #282c34;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    .playbutton {
+        grid-column: 3 / 4;
+        grid-row: 2/3;
+        height: 40px;
+        width: 40px;
+        /*background-color: red; 
+        border-radius: 4px;*/
+        justify-self: center;
+        align-items: center;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    }
+
+    .playbutton:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    .backbutton {
+        grid-column: 1 / 3;
+        grid-row: 1/2;
+        background-color: gray;
+        border-radius: 4px;
+        box-shadow: 3;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+        text-align: center;
+    }
+
+    .backbutton:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    .nextsong {
+        grid-column: 1/ 5;
+        grid-row: 4/6;
+        color: gray;
+        font-size: 12px;
+        border: darkred 1px solid;
+        padding: 4px;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    }
+
+    .nextsong:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    .searchForm {
+        padding: 12px 20px;
+    }
+
+    .imgBox {
+        grid-column: 5 / 11;
+        grid-row: 1 / 6;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <template v-if="isPlaying == false">
+            <div class="searchBarpage">
+                <input class="searchForm" type="text" v-on:keyup.13="run" v-model="searchBar" autofocus placeholder="Type a song!">
+                <br />
+                <!--<button v-on:click="run"> start player</button></div> -->
+                <svg v-on:click="run" width="150" height="40" style="border-radius: 4px;">
+                    <rect x="0" y="0" rx="0" ry="0" width="56" height="40" style="fill:red;" />
+                    <rect x="56" y="0" rx="0" ry="0" width="94" height="40" style="fill:#282c34;" />
+                    <text x="75" y="30" fill="#ffffff" font-size="28" font-family="Verdana" x="50" y="86">Play</text>
+                    <polygon points="20 10, 20 30, 40 20, 20 10" style="fill:white;stroke:white;stroke-width:1;fill-rule:evenodd;" />
+                </svg>
+                <span v-if="loading == true"> Loading</span>
+        </template>
+        <template v-else>
+            <div class="playingBar">
+                <!--<div class="playbutton" v-on:click="stopSong">Stop music</div> -->
+                <div class="playbutton" v-on:click="stopSong">
+                    <svg width="40" height="40">
+                        <rect x="0" y="0" rx="7" ry="7" width="40" height="40" style="fill:red;" />
+                        <polygon points="8 8, 8 32, 32 32, 32 8 ,8 8 " style="fill:white;stroke:white;stroke-width:1;fill-rule:evenodd;" />
+                    </svg>
+                </div>
+                <div class="imgBox"> <img style="
+        height: 150px;
+        width: 180px;" v-bind:src="currentVideoImg" /></div>
+                <div class="backbutton" v-on:click="backToSearch">Back</div>
+                <div class="nextsong" v-on:click="nextSong"> Wrong song? try another one
+                </div>
+            </div>
+        </template>
+        </div>
+        <!--<webview id="sound" src="{{currentVideo}}" style="height:500px"></webview>  -->
+
+        <script src="./side.js"></script>
+        <script>
+
+        </script>
+</body>
+
+</html>

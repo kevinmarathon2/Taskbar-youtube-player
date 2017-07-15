@@ -1,0 +1,11 @@
+# Compiled source #
+###################
+
+*.exe
+
+# node_modules #
+###################
+
+node_modules
+
+yumi/node_modules
