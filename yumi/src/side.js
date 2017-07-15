@@ -13,7 +13,7 @@ var app = new Vue({
     currentVideo: 0,
     currentVideoImg: "",
     currentVideoTitle: "",
-    currentVideoTime: "", 
+    currentVideoTime: "",
     isPlaying: false,
     loading: false
   },
@@ -52,6 +52,7 @@ var app = new Vue({
       this.isPlaying = false;
     },
     run: function() {
+      if (this.searchBar == "") return 0;
       this.loading = true;
       var string = this.searchBar.replace(new RegExp(" ", "g"), "+");
       console.log(string);
