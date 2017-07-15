@@ -101,6 +101,29 @@
         grid-column: 5 / 11;
         grid-row: 1 / 6;
     }
+
+    .titleBar {
+        grid-column: 5 / 11;
+        grid-row: 1 / 2;
+        color: rgba( 255, 255, 255, .66);
+        font-size: 10px;
+        justify-self: flex-end;
+        padding: 2px;
+        background-color: rgba(0, 0, 0, 0.66);
+        overflow: hidden;
+    }
+
+    .timelength {
+        grid-column: 8 / 11;
+        grid-row: 5 / 6;
+        align-self: flex-end;
+        color: rgba( 255, 255, 255, .66);
+        font-size: 12px;
+        justify-self: flex-end;
+        padding: 2px;
+        background-color: rgba(0, 0, 0, 0.66);
+        overflow: hidden;
+    }
 </style>
 
 <body>
@@ -130,6 +153,8 @@
                 <div class="imgBox"> <img style="
         height: 150px;
         width: 180px;" v-bind:src="currentVideoImg" /></div>
+                <div class="titleBar">{{currentVideoTitle}}</div>
+                <div class="timelength">{{currentVideoTime}}</div>
                 <div class="backbutton" v-on:click="backToSearch">Back</div>
                 <div class="nextsong" v-on:click="nextSong"> Wrong song? try another one
                 </div>
