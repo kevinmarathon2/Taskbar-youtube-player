@@ -47,20 +47,22 @@ function createWindow() {
 
 function sideWindowOpen() {
   sideWindow = new BrowserWindow({
-    // width: 340,
-    // height: 170,
-    // frame: false,
-    // transparent: true,
-    // resizable: false,
-    // skipTaskbar: true
+    // Production Page
+    width: 340,
+    height: 170,
+    frame: false,
+    transparent: true,
+    resizable: false,
+    skipTaskbar: true
     // 280px by 120 during dev 800 by 800 during
 
-    width: 800,
-    height: 800,
-    frame: true,
-    transparent: false,
-    resizable: true,
-    skipTaskbar: false
+    //Development page
+    // width: 800,
+    // height: 800,
+    // frame: true,
+    // transparent: false,
+    // resizable: true,
+    // skipTaskbar: false
   });
   sideWindow.loadURL(
     url.format({
