@@ -62,32 +62,25 @@ var app = new Vue({
           response => {
             // get body data
             var $ = cheerio.load(response.body);
-            //console.log(response.body);
-            //console.log(response.body);
-            //console.log($("[data-video-ids]"));
 
             var infoVideos = $(".yt-lockup-thumbnail");
-            //console.log(infoVideos);
+          
             var infoVideosamount = $(".yt-lockup-thumbnail").length;
-            // console.log(infoVideosamount);
+           
 
             var list = [];
             for (var counter = 0; counter < infoVideosamount; counter++) {
-              // list.push(videoList[counter].attribs["data-video-ids"]);
+             
               var video = {};
               var test = cheerio.load(infoVideos[counter]);
-              // console.log(test(".yt-thumb-simple"));
+             
               var element = test(".yt-thumb-simple > img");
-              //console.log(element[0]);
-              // console.log(element[0].attribs["data-thumb"]);
+            
               if (element[0].attribs["data-thumb"] == undefined) {
                 video.image = element[0].attribs["src"];
               } else {
                 video.image = element[0].attribs["data-thumb"];
               }
-              //console.log(element[0]);
-              //video.image = element[0].children[0].attribs["src"];
-              //console.log(test(".video-time"));
               if (test(".video-time").html() == null) {
                 video.timelength = "";
               } else {
@@ -100,25 +93,8 @@ var app = new Vue({
               //console.log(infotitle[counter].children[0].attribs.href);
               video.videosrc = infotitle[counter].children[0].attribs.href;
               list.push(video);
-              //console.log(video);
             }
-            console.log(list);
-            console.log(list.length);
-            // var videoList = $("[data-video-ids]");
-            // var videoAmount = $("[data-video-ids]").length;
-
-            // for (var counter = 0; counter < videoAmount; counter++) {
-            //   list.push(videoList[counter].attribs["data-video-ids"]);
-            // }
-
-            // var result = [];
-            // list.forEach(function(item) {
-            //   if (result.indexOf(item) < 0) {
-            //     result.push(item);
-            //   }
-            // });
-            // console.log(result);
-            //this.videoLists = result;
+       
             this.videoLists = list;
             ipcRenderer.send("Here-is-a-video-to-play", list[0].videosrc);
             ipcRenderer.send("change-status", {
@@ -152,6 +128,3 @@ ipcRenderer.on("Here-is-status", (event, arg) => {
     app.currentVideoTime = app.videoLists[app.currentVideo].timelength;
   }
 });
-
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.

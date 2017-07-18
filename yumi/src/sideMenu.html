@@ -103,6 +103,12 @@
         grid-row: 1 / 6;
     }
 
+    .shadebox {
+        grid-column: 5 / 11;
+        grid-row: 1 / 6;
+        background: linear-gradient(to left, rgba(255, 0, 0, 0), #282c34);
+    }
+
     .titleBar {
         grid-column: 5 / 11;
         grid-row: 1 / 2;
@@ -125,10 +131,25 @@
         background-color: rgba(0, 0, 0, 0.66);
         overflow: hidden;
     }
+
+    @keyframes loadingChange {
+        0%,
+        100% {
+            color: white;
+        }
+        60% {
+            color: brown;
+        }
+    }
+
+    .loadingSign {
+        animation: loadingChange 1s both;
+    }
 </style>
 
 <body>
     <div id="app">
+
         <template v-if="isPlaying == false">
             <div class="searchBarpage">
                 <input class="searchForm" type="text" v-on:keyup.13="run" v-model="searchBar" autofocus placeholder="Type a song!">
@@ -140,8 +161,10 @@
                     <text x="75" y="30" fill="#ffffff" font-size="28" font-family="Verdana" x="50" y="86">Play</text>
                     <polygon points="20 10, 20 30, 40 20, 20 10" style="fill:white;stroke:white;stroke-width:1;fill-rule:evenodd;" />
                 </svg>
-                <span v-if="loading == true"> Loading</span>
+                <span class="loadingSign" v-if="loading == true"> Loading</span>
         </template>
+
+
         <template v-else>
             <div class="playingBar">
                 <!--<div class="playbutton" v-on:click="stopSong">Stop music</div> -->
@@ -157,9 +180,8 @@
                         <polygon points="8 8, 8 32, 32 32, 32 8 ,8 8 " style="fill:white;stroke:white;stroke-width:1;fill-rule:evenodd;" />
                     </svg>
                 </div>
-                <div class="imgBox"> <img style="
-        height: 150px;
-        width: 180px;" v-bind:src="currentVideoImg" /></div>
+                <div class="imgBox"> <img style="height: 150px;width: 180px;" v-bind:src="currentVideoImg" /></div>
+                <div class="shadebox"> </div>
                 <div class="titleBar">{{currentVideoTitle}}</div>
                 <div class="timelength">{{currentVideoTime}}</div>
 
