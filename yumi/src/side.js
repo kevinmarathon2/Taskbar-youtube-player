@@ -15,7 +15,8 @@ var app = new Vue({
     currentVideoTitle: "",
     currentVideoTime: "",
     isPlaying: false,
-    loading: false
+    loading: false,
+    isPaused: false
   },
   watch: {
     videoLists: function(val) {}
@@ -52,11 +53,14 @@ var app = new Vue({
       this.isPlaying = false;
     },
     pauseSong() {
-      ipcRenderer.send("asking-pause", "");
+      if (this.isPaused) {
+        ipcRenderer.send("asking-resume", "");
+      } else {
+        ipcRenderer.send("asking-pause", "");
+      }
+      this.isPaused = !this.isPaused;
     },
-    resumeSong() {
-      ipcRenderer.send("asking-resume", "");
-    },
+    resumeSong() {},
     run: function() {
       if (this.searchBar == "") return 0;
       this.loading = true;
