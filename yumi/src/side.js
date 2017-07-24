@@ -51,6 +51,12 @@ var app = new Vue({
       ipcRenderer.send("asking-stop", "");
       this.isPlaying = false;
     },
+    pauseSong() {
+      ipcRenderer.send("asking-pause", "");
+    },
+    resumeSong() {
+      ipcRenderer.send("asking-resume", "");
+    },
     run: function() {
       if (this.searchBar == "") return 0;
       this.loading = true;
@@ -64,18 +70,16 @@ var app = new Vue({
             var $ = cheerio.load(response.body);
 
             var infoVideos = $(".yt-lockup-thumbnail");
-          
+
             var infoVideosamount = $(".yt-lockup-thumbnail").length;
-           
 
             var list = [];
             for (var counter = 0; counter < infoVideosamount; counter++) {
-             
               var video = {};
               var test = cheerio.load(infoVideos[counter]);
-             
+
               var element = test(".yt-thumb-simple > img");
-            
+
               if (element[0].attribs["data-thumb"] == undefined) {
                 video.image = element[0].attribs["src"];
               } else {
@@ -94,7 +98,7 @@ var app = new Vue({
               video.videosrc = infotitle[counter].children[0].attribs.href;
               list.push(video);
             }
-       
+
             this.videoLists = list;
             ipcRenderer.send("Here-is-a-video-to-play", list[0].videosrc);
             ipcRenderer.send("change-status", {

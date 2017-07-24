@@ -168,18 +168,22 @@
         <template v-else>
             <div class="playingBar">
                 <!--<div class="playbutton" v-on:click="stopSong">Stop music</div> -->
-                <div class="backbutton" v-on:click="backToSearch">
+
+
+                <div class="backbutton" v-on:click="pauseSong">
                     <svg width="40" height="40">
                         <rect x="0" y="0" rx="0" ry="00" width="40" height="40" style="fill:red;stroke:black;stroke-width:0;" />
                         <polygon points=" 32 25,  32 15 , 18 15 , 18 8, 10 20 , 18 32 , 18 25" style="fill:black;" />
                     </svg>
                 </div>
-                <div class="playbutton" v-on:click="stopSong">
+                <div class="playbutton" v-on:click="resumeSong">
                     <svg width="40" height="40">
                         <rect x="0" y="0" rx="7" ry="7" width="40" height="40" style="fill:red;" />
                         <polygon points="8 8, 8 32, 32 32, 32 8 ,8 8 " style="fill:white;stroke:white;stroke-width:1;fill-rule:evenodd;" />
                     </svg>
                 </div>
+
+
                 <div class="imgBox"> <img style="height: 150px;width: 180px;" v-bind:src="currentVideoImg" /></div>
                 <div class="shadebox"> </div>
                 <div class="titleBar">{{currentVideoTitle}}</div>

@@ -21,6 +21,14 @@ function createWindow() {
     transparent: true,
     resizable: false,
     skipTaskbar: true
+
+    //debug options
+    // width: 600,
+    // height: 800,
+    // frame: true,
+    // transparent: false,
+    // resizable: true,
+    // skipTaskbar: false
   });
 
   // and load the index.html of the app.
@@ -159,6 +167,14 @@ ipcMain.on("change-status", (event, arg) => {
 
 ipcMain.on("asking-status", (event, arg) => {
   event.sender.send("Here-is-status", playstatus);
+});
+
+ipcMain.on("asking-pause", (event, arg) => {
+  mainWindow.send("Please-Pause");
+});
+
+ipcMain.on("asking-resume", (event, arg) => {
+  mainWindow.send("Please-Resume");
 });
 
 ipcMain.on("asking-stop", (event, arg) => {
