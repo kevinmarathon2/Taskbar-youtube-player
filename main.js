@@ -56,21 +56,21 @@ function createWindow() {
 function sideWindowOpen() {
   sideWindow = new BrowserWindow({
     // Production Page
-    width: 340,
-    height: 170,
-    frame: false,
-    transparent: true,
-    resizable: false,
-    skipTaskbar: true
+    // width: 340,
+    // height: 170,
+    // frame: false,
+    // transparent: true,
+    // resizable: false,
+    // skipTaskbar: true
     // 280px by 120 during dev 800 by 800 during
 
     //Development page
-    // width: 800,
-    // height: 800,
-    // frame: true,
-    // transparent: false,
-    // resizable: true,
-    // skipTaskbar: false
+    width: 800,
+    height: 800,
+    frame: true,
+    transparent: false,
+    resizable: true,
+    skipTaskbar: false
   });
   sideWindow.loadURL(
     url.format({

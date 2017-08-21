@@ -1,6 +1,7 @@
 const VueResource = require("vue-resource");
 const cheerio = require("cheerio");
 const { ipcRenderer } = require("electron");
+const anime = require("animejs");
 
 Vue.use(VueResource);
 ipcRenderer.send("asking-status", "");
@@ -64,6 +65,13 @@ var app = new Vue({
     run: function() {
       if (this.searchBar == "") return 0;
       this.loading = true;
+
+      // anime({
+      //   targets: ".triangle",
+      //   strokeDashoffset: [anime.setDashoffset, 0],
+      //   easing: "easeInOutSine",
+      //   duration: 1500
+      // });
       var string = this.searchBar.replace(new RegExp(" ", "g"), "+");
       console.log(string);
       this.$http
